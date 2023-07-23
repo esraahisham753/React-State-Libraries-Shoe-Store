@@ -7,7 +7,9 @@ import { useQuery } from "react-query";
 
 // Copied from productService.js.
 // Added key arg since react-query passes the query key as the first argument.
-export async function getProducts(key, category) {
+export async function getProducts({ queryKey }) {
+  const [_, category] = queryKey;
+  console.log(category);
   const response = await fetch(
     process.env.REACT_APP_API_BASE_URL + "products?category=" + category
   );
@@ -18,10 +20,11 @@ export async function getProducts(key, category) {
 export default function Products() {
   const { category } = useParams();
   const [size, setSize] = useState("");
-  const { data: products, isLoading, error } = useQuery(
-    ["products", category],
-    getProducts
-  );
+  const {
+    data: products,
+    isLoading,
+    error,
+  } = useQuery(["products", category], getProducts);
 
   function renderProduct(p) {
     return (
