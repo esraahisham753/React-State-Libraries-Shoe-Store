@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Footer from "./Footer";
 import Header from "./Header";
-import Products from "./Products";
+import Products from "./Products.react-query";
 import { Routes, Route } from "react-router-dom";
 import Detail from "./Detail.class";
 import Cart from "./Cart";
